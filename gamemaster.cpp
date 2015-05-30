@@ -249,7 +249,7 @@ void gamemaster::checked(event ev)
     }
     if(ev.button==1 and ((late_target<=15 and target > 15) or (late_target>15 and target<=15)))
     {
-         late_x=widgets[target]->x;late_y=widgets[target]->y;
+         late_x=widgets[target]->x;late_y=widgets[target]->y; unsigned int rook_x; bool sanc=0;
             if (target<8)
             {
                 if(widgets[target]->y==100 and _y<=widgets[target]->y+300 and _y>widgets[target]->y+200
@@ -810,9 +810,6 @@ void gamemaster::checked(event ev)
                             }
                         }
                     }
-
-
-
                     if(_y<=widgets[target]->y+200 and _y>widgets[target]->y+100
                     and _x>=widgets[target]->x-105 and _x<widgets[target]->x-5)
                     {
@@ -827,9 +824,6 @@ void gamemaster::checked(event ev)
                             }
                         }
                     }
-
-
-
                     if(_y>=widgets[target]->y-100 and _y<widgets[target]->y
                     and _x<=widgets[target]->x+195 and _x>widgets[target]->x+95)
                     {
@@ -845,9 +839,6 @@ void gamemaster::checked(event ev)
                         }
 
                     }
-
-
-
                     if(_y>=widgets[target]->y-100 and _y<widgets[target]->y
                     and _x>=widgets[target]->x-105 and _x<widgets[target]->x-5)
                     {
@@ -862,11 +853,6 @@ void gamemaster::checked(event ev)
                             }
                         }
                     }
-
-
-
-
-
                     if(_y<=widgets[target]->y+200 and _y>widgets[target]->y+100
                     and _x<=widgets[target]->x+95 and _x>widgets[target]->x-5)
                     {
@@ -881,10 +867,6 @@ void gamemaster::checked(event ev)
                             }
                         }
                     }
-
-
-
-
                     if(_y<=widgets[target]->y+200 and _y>widgets[target]->y
                     and _x>=widgets[target]->x-105 and _x<widgets[target]->x-5)
                     {
@@ -899,10 +881,6 @@ void gamemaster::checked(event ev)
                             }
                         }
                     }
-
-
-
-
                     if(_y>=widgets[target]->y-100 and _y<widgets[target]->y
                     and _x<=widgets[target]->x+95 and _x>widgets[target]->x-5)
                     {
@@ -918,10 +896,6 @@ void gamemaster::checked(event ev)
                         }
 
                     }
-
-
-
-
                     if(_y<=widgets[target]->y+200 and _y>widgets[target]->y
                     and _x<=widgets[target]->x+195 and _x>widgets[target]->x+95)
                     {
@@ -937,13 +911,84 @@ void gamemaster::checked(event ev)
                         }
 
                     }
+                    ///sánc///
+                    if(((target==15 and widgets[target]->x==405 and widgets[13]->x==705) or (target==31 and widgets[target]->x==405 and widgets[29]->x==705))
+                    and _y<=widgets[target]->y+100 and _y>widgets[target]->y
+                    and _x<=widgets[target]->x+295 and _x>widgets[target]->x+195)
+                    {
+                        size_t temp=thereisnothingthere(widgets[target]->x+200,widgets[target]->y,target);
+                        if(temp!=32){temp=thereisnothingthere(widgets[target]->x+100,widgets[target]->y,target);}
+                        if((15<temp and target==15) or ((temp<=15 or temp==32) and target==31))
+                        {
+
+                            widgets[target]->x+=100;
+                            if(target==15 and !chess(15))
+                            {
+                                sanc=1;
+                                widgets[target]->x+=100;
+                                rook_x=widgets[13]->x;
+                                widgets[13]->x-=200;
+                            }
+                            if(target==31 and !chess(31))
+                            {
+                                sanc=1;
+                                widgets[target]->x+=100;
+                                rook_x=widgets[29]->x;
+                                widgets[29]->x-=200;
+                            }
+                            late_target=target;
+                            {
+                                havetokill=temp;
+                            }
+                        }
+                    }
+                    if(((target==15 and widgets[target]->x==405 and widgets[12]->x==5) or (target==31 and widgets[target]->x==405 and widgets[28]->x==5))
+                    and _y<=widgets[target]->y+100 and _y>widgets[target]->y
+                    and _x>=widgets[target]->x-205 and _x<widgets[target]->x-105)
+                    {
+                        size_t temp=thereisnothingthere(widgets[target]->x-200,widgets[target]->y,target);
+                        if(temp!=32){temp=thereisnothingthere(widgets[target]->x-100,widgets[target]->y,target);}
+                        if((15<temp and target==15) or ((temp<=15 or temp==32) and target==31))
+                        {
 
 
-
-
+                            widgets[target]->x-=100;
+                            if(target==15 and !chess(15))
+                            {
+                                sanc=1;
+                                widgets[target]->x-=100;
+                                rook_x=widgets[12]->x;
+                                widgets[12]->x+=300;
+                            }
+                            if(target==31 and !chess(31))
+                            {
+                                sanc=1;
+                                widgets[target]->x-=100;
+                                rook_x=widgets[28]->x;
+                                widgets[28]->x+=300;
+                            }
+                            late_target=target;
+                            {
+                                havetokill=temp;
+                            }
+                        }
+                    }
         }
             if((target>15 and chess(31)) or (target<=15 and chess(15)))
             {
+                if(sanc)
+                {
+                    unsigned short temp=thereisnothingthere(widgets[target]->x+100,widgets[target]->y,target);
+                    unsigned short temp2=thereisnothingthere(widgets[target]->x-100,widgets[target]->y,target);
+                    if(temp!=32)
+                    {
+                        widgets[temp]->x=rook_x;
+                    }
+                    else
+                    {
+                        widgets[temp2]->x=rook_x;
+                    }
+                }
                 widgets[target]->x=late_x;widgets[target]->y=late_y;havetokill=32;
                 if(target>15){late_target=-1;}else{late_target=32;}
             }

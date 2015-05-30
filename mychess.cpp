@@ -37,7 +37,7 @@ mychess::mychess(int width, int height) : window(width, height){
     D.transparent(1);
     genegrid(D);
     gamemaster * BigMasta = new gamemaster(800,800,0,0);
-                ///black///
+                ///white///
     chessbutton * pawn_1 = new pawn(5,100,90,100,[&](){BigMasta->get_target(0);},0);
     chessbutton * pawn_2 = new pawn(105,100,90,100,[&](){BigMasta->get_target(1);},0);
     chessbutton * pawn_3 = new pawn(205,100,90,100,[&](){BigMasta->get_target(2);},0);
@@ -54,7 +54,7 @@ mychess::mychess(int width, int height) : window(width, height){
     chessbutton * rook_2 = new rook(705,0,90,100,[&](){BigMasta->get_target(13);},0);
     chessbutton * queen_ = new queen(305,0,90,100,[&](){BigMasta->get_target(14);},0);
     chessbutton * king_ = new king(405,0,90,100,[&](){BigMasta->get_target(15);},0);
-                ///white///
+                ///black///
     chessbutton * pawn_1_b = new pawn(5,600,90,100,[&](){BigMasta->get_target(16);},1);
     chessbutton * pawn_2_b = new pawn(105,600,90,100,[&](){BigMasta->get_target(17);},1);
     chessbutton * pawn_3_b = new pawn(205,600,90,100,[&](){BigMasta->get_target(18);},1);

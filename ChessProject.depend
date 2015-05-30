@@ -575,10 +575,10 @@
 	"widget.hpp"
 	"gamemaster.h"
 
-1432922374 c:\users\plain\documents\github\widgets\gamemaster.h
+1432971300 c:\users\plain\documents\github\widgets\gamemaster.h
 	"widget.hpp"
 
-1432812770 source:c:\users\plain\documents\github\widgets\mychess.cpp
+1432969736 source:c:\users\plain\documents\github\widgets\mychess.cpp
 	"mychess.hpp"
 	"pawn.h"
 	"queen.h"
@@ -644,7 +644,7 @@
 	"choose.hpp"
 	<iostream>
 
-1432926284 source:c:\users\plain\documents\github\widgets\gamemaster.cpp
+1432970259 source:c:\users\plain\documents\github\widgets\gamemaster.cpp
 	"gamemaster.h"
 	<iostream>
 
